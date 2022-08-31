@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class Devise::Apllication
 require_relative 'boot'
 
 require 'rails/all'
