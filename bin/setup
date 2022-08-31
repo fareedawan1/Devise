@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 # class or module
+# class or module
 # ?
 require 'fileutils'
 include FileUtils
