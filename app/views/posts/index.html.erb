@@ -1,2 +1,7 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>All Posts</h1>
+<% @post.each do |post|%>
+  <%= post.title %></div>
+  <%= truncate(post.body, :length => 35)%>
+  <%= link_to "Read Post", post_path(post) %>
+<% end %>
+
