@@ -1,9 +1,10 @@
-<%= form_with model: @posts do |f| %>
+<%= form_with model: @post do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <br>
   <%= f.label :body %><br>
   <%= f.text_area :body %><br>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <br>
   <div>
     <%= f.submit %>

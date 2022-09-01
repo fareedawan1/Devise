@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    authorize @posts
   end
 
   def show
@@ -15,48 +14,41 @@ class PostsController < ApplicationController
   end
  
   def edit
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
-    # @post.user = current_user
     authorize @post
  
-      if @post.save
-        redirect_to @post, notice: 'Post was successfully created.' 
-        # render @post
-      else
-        render :new 
-      end
+    if @post.save
+      redirect_to @post, notice: 'Post was successfully created.' 
+    else
+      render :new 
+    end
   end
  
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
-        render :show, status: :ok, location: @post
-      else
-        render :edit 
-        render json: @post.errors, status: :unprocessable_entity 
-      end
+    authorize @post
+    if @post.update_attributes(post_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit 
     end
   end
  
   def destroy
+    authorize @post
     @post.destroy
-    respond_to do |format|
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
-      head :no_content
-    end
+    redirect_to root_path, notice: 'Post was successfully destroyed.'
   end
  
   private
     def set_post
       @post = Post.find(params[:id])
-      authorize @post
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :user_id)
+      params.require(:post).permit(:title, :body,:user_id)
     end
 end
