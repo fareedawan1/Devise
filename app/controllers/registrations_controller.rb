@@ -8,10 +8,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
 
-  def new
-    super
-  end
-
   # POST /resource
   # def create
   #   super
@@ -70,5 +66,4 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password) }
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :current_password) }
   end
-
 end
