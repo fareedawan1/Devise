@@ -1,13 +1,15 @@
 <h1>All Posts</h1>
 <% @posts.each do |post|%>
-  <%= post.title %></div>
-  <%= truncate(post.body, :length => 35)%>
+  <div><%= post.title %></div>
   <%= link_to "Read Post", post_path(post) %>
 <% end %>
 <!-- <div>
 <%= link_to "create post", new_post_path %> 
 </div> -->
+<div>
 <%= link_to "sign up", new_user_session_path %> | 
 <%= link_to "log in", user_session_path %> |
-<%= link_to "edit profile", edit_user_registration_path %>
+<%= link_to "sign out", destroy_user_session_path, method: :delete %> 
+</div>
+<!-- <%= link_to "edit profile", edit_user_registration_path %> -->
 

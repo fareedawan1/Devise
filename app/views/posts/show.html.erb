@@ -1,2 +1,11 @@
-<h1>Posts#show</h1>
+<div><%= @post.title %></div>
+  <%= @post.body %>
+  <br>
+  <br>
+  <%= link_to "Edit Post", edit_post_path(@post) %>
+  <br>
+  <br>
+  <%= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>
+ 
 

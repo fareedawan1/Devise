@@ -7,7 +7,7 @@ class PostPolicy
   end
   
   def update?
-    user.present? || !post.published?
+    user.present?
   end
 
   def update
