@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
 
   def new
-    @post = Post.order("created_at DESC ")
+    @post = Post.order('created_at DESC ')
   end
 
   def create
@@ -16,11 +18,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
@@ -36,12 +36,12 @@ class PostsController < ApplicationController
   end
 
   private
-  
+
   def find_post
     @post = Post.find(params[:id])
   end
-  def post_params
-    params.require(:post).permit(:title,:body)
-  end
 
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
