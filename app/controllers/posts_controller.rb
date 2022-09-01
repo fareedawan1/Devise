@@ -1,39 +1,47 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  after_action :verify_authorized
-
   def index
-    @users = User.all
-    authorize User
+    @posts = Post.all
   end
 
-  def show
-    @user = User.find(params[:id])
-    authorize @user
+  def new
+    @post = Post.order('created_at DESC ')
   end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to @post
+    else
+      render 'new'
+    end
+  end
+
+  def show; end
+
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
-    authorize @user
-    if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+    @post = Post.find(params[:id])
+    authorize @post
+    if @post.update(post_params)
+      redirect_to @post
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      render :edit
     end
   end
 
   def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    @post.destroy
+    redirect_to root_path
   end
 
   private
 
-  def secure_params
-    params.require(:user).permit(:role)
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
