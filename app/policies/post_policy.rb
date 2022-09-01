@@ -1,23 +1,23 @@
-class PostPolicy
-  attr_reader :user, :post
-  
-  def initialize(user, post)
-    @user = user
-    @post = post
+class PostPolicy < ApplicationPolicy
+  def index?
+    true
   end
-  
-  def update?
+ 
+  def create?
     user.present?
   end
-
-  def update
-    @post = Post.find(params[:id])
-    authorize @post
-    if @post.update(post_params)
-      redirect_to @post
-    else
-      render :edit
-    end
+ 
+  def update?
+    return true if user.present? && user == post.user
   end
-
+ 
+  def destroy?
+    return true if user.present? && user == post.user
+  end
+ 
+  private
+ 
+    def post
+      record
+    end
 end
