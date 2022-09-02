@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # class Devise::Application
+# class Devise::Application
 # class Devise::Apllication
 require_relative 'boot'
 
