@@ -1,3 +1,6 @@
+<% if user_signed_in? %>
+  <%= link_to "create post", new_post_path %> 
+<%end%>
 <h1>All Posts</h1>
 <% @posts.each do |post|%>
   <div><%= post.title %></div>
