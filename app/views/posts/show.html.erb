@@ -1,10 +1,23 @@
-<%= @post.title %>
-  <%= @post.body %>
-  <br>
-  <%= link_to "Edit Post", edit_post_path(@post) %>
-  <br>
-  <br>
-  <%= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-</div>
+<div></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @post.title %></td> 
+      <td><p>|</p></td> 
+      <td><%= @post.body %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to "Edit Post", edit_post_path(@post) %>
+<br>
+<br>
+<%= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+
  
 
